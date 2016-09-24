@@ -1,5 +1,5 @@
 angular.module('stax2.0')
-  .controller('ProfileCtrl', function($scope, $rootScope, $location, $window, $auth, Account) {
+  .controller('ProfileCtrl', function($scope, $rootScope, $location, $window, Account) {
     $scope.profile = $rootScope.currentUser;
 
     $scope.updateProfile = function() {

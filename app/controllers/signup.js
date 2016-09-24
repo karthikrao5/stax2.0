@@ -1,5 +1,5 @@
 angular.module('stax2.0')
-  .controller('SignupCtrl', function($scope, $rootScope, $location, $window, $auth) {
+  .controller('SignupCtrl', function($scope, $rootScope, $location, $window) {
     $scope.signup = function() {
       $auth.signup($scope.user)
         .then(function(response) {

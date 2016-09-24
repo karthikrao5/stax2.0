@@ -40,13 +40,13 @@ angular.module('stax2.0', ['ngRoute'])
       });
 
 
-    function skipIfAuthenticated($location, $auth) {
+    function skipIfAuthenticated($location) {
       if ($auth.isAuthenticated()) {
         $location.path('/');
       }
     }
 
-    function loginRequired($location, $auth) {
+    function loginRequired($location) {
       if (!$auth.isAuthenticated()) {
         $location.path('/login');
       }

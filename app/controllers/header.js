@@ -1,5 +1,5 @@
 angular.module('stax2.0')
-  .controller('HeaderCtrl', function($scope, $location, $window, $auth) {
+  .controller('HeaderCtrl', function($scope, $location, $window) {
     $scope.isActive = function (viewLocation) {
       return viewLocation === $location.path();
     };

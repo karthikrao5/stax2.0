@@ -1,7 +1,7 @@
 angular.module('stax2.0', ['ngRoute'])
   .config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
-    skipIfAuthenticated.$inject = ["$location", "$auth"];
-    loginRequired.$inject = ["$location", "$auth"];
+    skipIfAuthenticated.$inject = ["$location"];
+    loginRequired.$inject = ["$location"];
     $locationProvider.html5Mode(true);
 
     $routeProvider
@@ -42,13 +42,13 @@ angular.module('stax2.0', ['ngRoute'])
       });
 
 
-    function skipIfAuthenticated($location, $auth) {
+    function skipIfAuthenticated($location) {
       if ($auth.isAuthenticated()) {
         $location.path('/');
       }
     }
 
-    function loginRequired($location, $auth) {
+    function loginRequired($location) {
       if (!$auth.isAuthenticated()) {
         $location.path('/login');
       }
@@ -95,7 +95,7 @@ angular.module('stax2.0')
   }]);
 
 angular.module('stax2.0')
-  .controller('HeaderCtrl', ["$scope", "$location", "$window", "$auth", function($scope, $location, $window, $auth) {
+  .controller('HeaderCtrl', ["$scope", "$location", "$window", function($scope, $location, $window) {
     $scope.isActive = function (viewLocation) {
       return viewLocation === $location.path();
     };
@@ -112,7 +112,7 @@ angular.module('stax2.0')
   }]);
 
 angular.module('stax2.0')
-  .controller('LoginCtrl', ["$scope", "$rootScope", "$location", "$window", "$auth", function($scope, $rootScope, $location, $window, $auth) {
+  .controller('LoginCtrl', ["$scope", "$rootScope", "$location", "$window", function($scope, $rootScope, $location, $window) {
     $scope.login = function() {
       $auth.login($scope.user)
         .then(function(response) {
@@ -148,7 +148,7 @@ angular.module('stax2.0')
     };
   }]);
 angular.module('stax2.0')
-  .controller('ProfileCtrl', ["$scope", "$rootScope", "$location", "$window", "$auth", "Account", function($scope, $rootScope, $location, $window, $auth, Account) {
+  .controller('ProfileCtrl', ["$scope", "$rootScope", "$location", "$window", "Account", function($scope, $rootScope, $location, $window, Account) {
     $scope.profile = $rootScope.currentUser;
 
     $scope.updateProfile = function() {
@@ -241,7 +241,7 @@ angular.module('stax2.0')
   }]);
 
 angular.module('stax2.0')
-  .controller('SignupCtrl', ["$scope", "$rootScope", "$location", "$window", "$auth", function($scope, $rootScope, $location, $window, $auth) {
+  .controller('SignupCtrl', ["$scope", "$rootScope", "$location", "$window", function($scope, $rootScope, $location, $window) {
     $scope.signup = function() {
       $auth.signup($scope.user)
         .then(function(response) {
